@@ -24,4 +24,8 @@ class Mahasiswa extends Model
         'Alamat',
         'Tanggal Lahir',
     ];
+
+    public static function getByNim($Nim){
+        return self::where('nim', $Nim)->firstOrFail();
+    }
 }

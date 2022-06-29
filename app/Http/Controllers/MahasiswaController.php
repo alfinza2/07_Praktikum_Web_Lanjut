@@ -24,6 +24,20 @@ class MahasiswaController extends Controller
         return view('mahasiswa.index', compact('mahasiswa'));
     }
 
+    public function searchMhs(Request $request){
+        $search = $request ->search;
+
+        $mahasiswa = Mahasiswa::where('nim','like',"%".$search."%")
+        ->orWhere('nama','like', "%".$search."%")
+        ->orWhere('kelas','like', "%".$search."%")
+        ->orWhere('jurusan','like', "%".$search."%")
+        ->orWhere('email','like', "%".$search."%")
+        ->orWhere('alamat','like', "%".$search."%")
+        ->orWhere('tanggalLahir','like', "%".$search."%")
+        ->paginate(3);
+        return view('mahasiswa.index', compact('mahasiswa'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
